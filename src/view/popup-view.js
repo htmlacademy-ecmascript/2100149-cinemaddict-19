@@ -255,18 +255,18 @@ export default class PopupView extends AbstractStatefulView {
   };
 
   #sendCommentHandler = (evt) => {
-    if (evt.ctrlKey || evt.metaKey
+    if ((evt.ctrlKey || evt.metaKey)
       && evt.key === 'Enter'
       && this._state.userComment
       && this._state.checkedEmoji) {
 
-      const comment = {
+      const newComment = {
         comment: this._state.userComment,
         emotion: this._state.checkedEmoji
       };
 
       this._setState({ isFormDisabled: true });
-      this._callback.sendComment(comment);
+      this._callback.sendComment(newComment);
     }
   };
 
