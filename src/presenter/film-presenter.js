@@ -30,22 +30,22 @@ export default class FilmPresenter {
           document.body.classList.remove('hide-overflow');
         };
 
-        const onEscKeyDown = (evt) => {
+        const escKeyDownHandler = (evt) => {
           if (evt.key === 'Escape' || evt.key === 'Esc') {
             evt.preventDefault();
             removePopup();
-            document.removeEventListener('keydown', onEscKeyDown);
+            document.removeEventListener('keydown', escKeyDownHandler);
           }
         };
 
-        const onPopupCloseButtonClickHandler = () => {
+        const popupCloseButtonClickHandler = () => {
           removePopup();
-          document.removeEventListener('keydown', onEscKeyDown);
+          document.removeEventListener('keydown', escKeyDownHandler);
         };
 
         const setPopupHandlers = () => {
-          document.addEventListener('keydown', onEscKeyDown);
-          this.#popupComponent.setCloseButtonClickHandler(onPopupCloseButtonClickHandler);
+          document.addEventListener('keydown', escKeyDownHandler);
+          this.#popupComponent.setCloseButtonClickHandler(popupCloseButtonClickHandler);
           this.#popupComponent.setWatchlistClickHandler(this.#handleWatchlistClick);
           this.#popupComponent.setHistoryClickHandler(this.#handleHistoryClick);
           this.#popupComponent.setFavoriteClickHandler(this.#handleFavoriteClick);

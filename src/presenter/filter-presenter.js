@@ -70,21 +70,21 @@ export default class FilterPresenter {
   #renderHeader = () => {
     const getRank = (filmsCount) => {
       const UserRank = {
-        Empty: '',
-        Novice: 'Novice',
-        Fan: 'Fan',
-        MovieBuff: 'Movie buff'
+        EMPTY: '',
+        NOVICE: 'Novice',
+        FAN: 'Fan',
+        MOVIE_BUFF: 'Movie buff'
       };
 
       if (filmsCount === 0) {
-        return UserRank.Empty;
+        return UserRank.EMPTY;
       } else if (filmsCount > 0 && filmsCount < 11) {
-        return UserRank.Novice;
+        return UserRank.NOVICE;
       } else if (filmsCount > 10 && filmsCount < 21) {
-        return UserRank.Fan;
-      } else {
-        return UserRank.MovieBuff;
+        return UserRank.FAN;
       }
+
+      return UserRank.MOVIE_BUFF;
     };
 
     const watchedFilmsCount = this.filters.find((item) => (item.type === FilterType.HISTORY)).count;

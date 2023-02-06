@@ -4,10 +4,9 @@ import FilmPresenter from './film-presenter.js';
 import { filterPresenter } from '../main.js';
 import SortView from '../view/sort-view.js';
 import FilmBoardView from '../view/films-board-view.js';
-import NoFilmsView from '../view/no-film-view.js';
+import NoFilmsView from '../view/no-films-view.js';
 import LoadingView from '../view/loading-view.js';
-
-import FilmListView from '../view/films-list-view.js';
+import FilmsListView from '../view/films-list-view.js';
 import ShowMoreButtonView from '../view/show-more-button-view.js';
 import FooterStatisticView from '../view/footer-statistic-view.js';
 import { sortByDate, sortByRating } from '../utils.js';
@@ -111,7 +110,7 @@ export default class MainPresenter {
       return;
     }
 
-    this.#filmsContainer = new FilmListView();
+    this.#filmsContainer = new FilmsListView();
     render(this.#filmsContainer, this.#filmBoard);
 
     this.#renderFilms(films.slice(0, Math.min(filmsCount, this.#renderedFilmsCount)));
@@ -137,11 +136,7 @@ export default class MainPresenter {
     remove(this.#showMoreButtonComponent);
     remove(this.#footerStatisticComponent);
 
-    if (resetRenderedFilmsCount) {
-      this.#renderedFilmsCount = FILMS_COUNT_PER_STEP;
-    } else {
-      this.#renderedFilmsCount = Math.min(filmsCount, this.#renderedFilmsCount);
-    }
+    this.#renderedFilmsCount = resetRenderedFilmsCount ? FILMS_COUNT_PER_STEP : Math.min(filmsCount, this.#renderedFilmsCount);
 
     if (resetSortType) {
       this.#currentSortType = SortType.DEFAULT;
